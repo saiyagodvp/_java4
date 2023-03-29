@@ -1,0 +1,99 @@
+package com.vn.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import com.vn.model.Product;
+import com.vn.utils.JPAUtils;
+
+public class ProductDAOImpl implements ProductDAO {
+	
+	public static void main(String[] args) {
+		ProductDAO productDAO = new ProductDAOImpl();
+		
+		List<Product> products = productDAO.readAll();
+		for (Product product : products) {
+			System.out.println(product.getName());
+		}
+	}
+
+	@Override
+	public Product create(Product product) {
+		//2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		//logic
+		entityManager.persist(product);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return product;
+	}
+
+	@Override
+	public List<Product> readAll() {
+		
+		//2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		//3 EntityManager -> Query => List
+		Query q = entityManager.createQuery("SELECT top 1 FROM Product p");
+		List<Product> result = q.getResultList();
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return result;
+	}
+
+	@Override
+	public Product readById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product update(Product product) {
+		//2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		//LOGIC
+		entityManager.merge(product);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return product;
+	}
+
+	@Override
+	public Boolean delete(Product product) {
+		//2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		entityManager.remove(product);
+				
+		entityManager.getTransaction().commit();
+		entityManager.close();	
+		return true;
+	}
+
+	@Override
+	public Boolean delete(Integer id) {
+		//2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		Product p = entityManager.find(Product.class, id);
+		entityManager.remove(p);
+				
+		entityManager.getTransaction().commit();
+		entityManager.close();	
+		return true;
+	}
+
+}

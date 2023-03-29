@@ -1,0 +1,36 @@
+package model;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "tuiXach")
+public class tuiXach {
+	@Id
+	@Column(name = "id_TuiXach")
+	private Integer id_TuiXach;
+	
+	@Column(name = "tenTuiXach")
+	private String tenTuiXach;
+	
+	@Column(name = "mauSac")
+	private String mauSac;
+	
+	@Column(name = "giaTien")
+	private String giaTien;
+	
+	
+	@Column(name = "ghiChu")
+	private String ghiChu;
+	
+	
+	
+}

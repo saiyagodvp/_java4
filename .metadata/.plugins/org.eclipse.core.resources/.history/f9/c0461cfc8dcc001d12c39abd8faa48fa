@@ -1,0 +1,49 @@
+package dao;
+
+import java.util.List;
+
+import model.productModel;
+
+public class productDAOimpl implements productDAO {
+
+	public static void main(String[] args) {
+		
+	}
+
+	@Override
+	public productModel create(productModel p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<productModel> readAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public productModel readById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public productModel update(productModel product) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean delete(productModel product) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean delete(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

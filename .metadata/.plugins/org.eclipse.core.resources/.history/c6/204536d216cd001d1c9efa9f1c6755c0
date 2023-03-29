@@ -1,0 +1,51 @@
+package controller;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.tuiXachDAO;
+import dao.tuiXachDAOimpl;
+import model.tuiXach;
+
+@WebServlet({ "/tuiXach", "/them" })
+public class tuiXachServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private tuiXachDAO tuiXachDAO = new tuiXachDAOimpl();
+
+	public tuiXachServlet() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.setAttribute("listTuiXach", tuiXachDAO.getAll());
+		request.getRequestDispatcher("/tuiXach/listTuiXach.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String tenTuiXach = request.getParameter("tenTuiXach");
+		String mauSac = request.getParameter("mauSac");
+		String giaTien = request.getParameter("giaTien");
+		String ghiChu = request.getParameter("ghiChu");
+
+		String uri = request.getRequestURI();
+		if (uri.contains("them")) {
+			tuiXach t = new tuiXach(tenTuiXach, mauSac, giaTien, ghiChu);
+			System.out.println(t.getTenTuiXach());
+			System.out.println(t.getMauSac());
+			System.out.println(t.getGiaTien());
+			System.out.println(t.getGhiChu());
+		}
+	}
+
+}

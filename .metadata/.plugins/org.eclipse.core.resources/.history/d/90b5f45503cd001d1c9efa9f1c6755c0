@@ -1,0 +1,31 @@
+package dao;
+
+import java.util.List;
+
+import model.tuiXach;
+
+public class tuiXachImpl implements tuiXachDAO {
+
+	public static void main(String[] args) {
+		tuiXachDAO tuiXachDAO = new impl();
+
+		List<Product> listProducts = productDAO.readAll();
+		for (Product p : listProducts) {
+			System.out.println(p.getName());
+		}
+	}
+	
+	
+	@Override
+	public tuiXach them(tuiXach tuiXach) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<tuiXach> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

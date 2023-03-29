@@ -1,0 +1,49 @@
+package controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/bai2")
+public class ServletBai2 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public ServletBai2() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getRequestDispatcher("/views/bai2.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String gioiTinh = request.getParameter("gioiTinh");
+		String married = request.getParameter("married");
+		String country = request.getParameter("country");
+		String ghuChu = request.getParameter("ghuChu");
+		String maritalStatus = "";
+		if (married == null) {
+			maritalStatus = "Kênh Chat FA";
+		} else {
+			maritalStatus = married;
+		}
+		
+		request.setAttribute("username", username);
+		request.setAttribute("password", password);
+		request.setAttribute("gioiTinh", gioiTinh);
+		request.setAttribute("married", maritalStatus);
+		request.setAttribute("country", country);
+		request.setAttribute("ghuChu", ghuChu);
+		
+		request.getRequestDispatcher("/views/result_Bai2.jsp").forward(request, response);
+	}
+
+}

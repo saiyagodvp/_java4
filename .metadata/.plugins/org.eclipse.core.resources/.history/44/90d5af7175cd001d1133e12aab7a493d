@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<divclass"container">
+	<form action="/asmJava4Pnam" align="center" method="post">
+		<div class="row">
+			<div class="col  input-group input-group-sm mb-3 ">
+				<span class="input-group-text btn btn-primary"
+					id="inputGroup-sizing-sm">Tên: </span> <input id="tenTuiXach"
+					type="text" name="tenTuiXach" value="${tenTX }"
+					class="form-control border border-primary text-black"
+					aria-label="Sizing example input"
+					aria-describedby="inputGroup-sizing-sm">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col  input-group input-group-sm mb-3 ">
+				<span class="input-group-text btn btn-primary"
+					id="inputGroup-sizing-sm">Màu: </span> <input id="mauSac"
+					type="text" name="mauSac" value="${mauTX }"
+					class="form-control border border-primary text-black"
+					aria-label="Sizing example input"
+					aria-describedby="inputGroup-sizing-sm">
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col  input-group input-group-sm mb-3 ">
+				<span class="input-group-text btn btn-primary"
+					id="inputGroup-sizing-sm">Giá: </span> <input id="giaTien"
+					type="text" name="giaTien" value="${giaTX }"
+					class="form-control border border-primary text-black"
+					aria-label="Sizing example input"
+					aria-describedby="inputGroup-sizing-sm">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col  input-group input-group-sm mb-3 ">
+				<span class="input-group-text btn btn-primary"
+					id="inputGroup-sizing-sm">Ghi Chú:</span> <input id="ghiChu"
+					type="text" name="ghiChu" value="${ghiChuTX }"
+					class="form-control border border-primary text-black"
+					aria-label="Sizing example input"
+					aria-describedby="inputGroup-sizing-sm">
+			</div>
+		</div>
+	</form>
+	</div>
+</body>
+</html>

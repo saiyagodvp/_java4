@@ -1,0 +1,76 @@
+package control;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.ProductDAO;
+import entity.Product;
+
+/**
+ * Servlet implementation class UpdateProduct
+ */
+@WebServlet("/updateProduct")
+public class UpdateProduct extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+   
+    public UpdateProduct() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
+		ProductDAO dao = new ProductDAO();
+		Product d = dao.getProductById(id);
+		
+		request.setAttribute("prd",d);
+		
+		request.setAttribute("view","views/updateProduct.jsp");
+		request.getRequestDispatcher("layout.jsp")
+		.forward(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String ten = request.getParameter("ten");
+		String vi_tri = request.getParameter("vi_tri");
+		String thong_tin = request.getParameter("thong_tin");
+		
+		String gia = request.getParameter("gia");
+		Integer gia1 = Integer.parseInt(gia);
+		
+		String dien_tich = request.getParameter("dien_tich");
+		Integer dien_tich1 = Integer.parseInt(dien_tich);
+		
+		String so_phong = request.getParameter("so_phong");
+		Integer so_phong1 = Integer.parseInt(so_phong);
+		
+		String so_luong = request.getParameter("so_luong");
+		Integer so_luong1 = Integer.parseInt(so_luong);
+		
+		String trang_thai = request.getParameter("trang_thai");
+		Boolean trang_thai1 = false;
+		if(trang_thai.equals("1")) {
+			trang_thai1 = true;
+		} 
+		
+		String id = request.getParameter("id");
+		Integer id1 = Integer.parseInt(id);
+		
+		Product d1 = new Product(id1,ten,gia1,dien_tich1,vi_tri,so_phong1,so_luong1,thong_tin,trang_thai1);
+		System.out.println("vào update "+d1.toString());
+		
+		ProductDAO dao = new ProductDAO();
+		dao.update(d1);
+		
+		response.sendRedirect("readControl");
+	}
+
+}

@@ -1,0 +1,20 @@
+﻿USE MASTER
+GO
+DROP DATABASE JAVA04_IT17314
+GO
+CREATE DATABASE JAVA04_IT17314
+GO
+USE JAVA04_IT17314
+GO
+CREATE TABLE Product(
+	id_product		INT PRIMARY KEY IDENTITY,
+	product_name	NVARCHAR(100) NOT NULL,
+	description		NVARCHAR(500) NULL,
+	image			NVARCHAR(100) NOT NULL,
+	price			NUMERIC(18,2) NOT NULL,
+	create_date		DATE		  NOT NULL
+)
+GO
+INSERT INTO Product VALUES
+	(N'Iphone 14 pro max', N'Sản phẩm 2022', 'image/ip14.png', 23.9, '2023-03-12'),
+	(N'Laptop VAIO 14', N'Sản phẩm 2013', 'image/vaio.png', 16.9, '2013-03-12')

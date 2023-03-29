@@ -1,0 +1,42 @@
+package dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import model.Product;
+import model.tuiXach;
+import utils.JPAUtils;
+
+public class tuiXachDAOimpl implements tuiXachDAO {
+
+	public static void main(String[] args) {
+		tuiXachDAO tuiXachDAO = new tuiXachDAOimpl();
+
+		List<tuiXach> listTuiXach = tuiXachDAO.getAll();
+		for (tuiXach t : listTuiXach) {
+			System.out.println(t.getTenTuiXach());
+		}
+	}
+	
+	
+	@Override
+	public tuiXach them(tuiXach tuiXach) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<tuiXach> getAll() {
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+
+		Query q = entityManager.createQuery("SELECT t FROM tuiXach t");
+		List<tuiXach> result = q.getResultList();
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return result;
+	}
+
+}

@@ -1,0 +1,94 @@
+<%@page import="model.tuiXach"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF8"
+	pageEncoding="UTF8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
+	integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer">
+	
+</script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
+	integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer">
+	
+</script>
+</head>
+<body align="center">
+
+	<%-- <% 
+		List<Product> products = (List<Product>) request.getAttribute("listProducts");
+		for(Product product : products) {
+			response.getWriter().print(product.getName());
+		}
+	%> --%>
+
+
+	<br>
+	<div class="container">
+
+		<form action="ontap/" align="center" method="post">
+			<div>
+				<label for="tenTuiXach">Tên: </label> <input id="tenTuiXach"
+					type="text" name="tenTuiXach" />
+			</div>
+			<div>
+				<label for="mauSac">Màu: </label> <input id="mauSac" type="text"
+					name="mauSac" />
+			</div>
+			<div>
+				<label for="giaTien">Giá: </label> <input id="giaTien" type="text"
+					name="giaTien" />
+			</div>
+			<div>
+				<label for="ghiChu">Ghi Chú: </label> <input id="ghiChu"
+					type="text" name="ghiChu" />
+			</div>
+			<button>formaction="/asmJava4Pnam/them"</button>
+		</form>
+
+		<table class="table table-hover  table-striped " align="center">
+			<thead>
+				<th>Id</th>
+				<th>Tên</th>
+				<th>Màu Sắc</th>
+				<th>Giá</th>
+				<th>Ghi Chú</th>
+			</thead>
+			<tbody>
+				<c:forEach items="${listTuiXach}" var="tuiXach">
+					<tr>
+						<td>${tuiXach.id_TuiXach}</td>
+						<td>${tuiXach.tenTuiXach}</td>
+						<td>${tuiXach.mauSac}</td>
+						<td>${tuiXach.giaTien}</td>
+						<td>${tuiXach.ghiChu}</td>
+						<td>
+						<a href="${pageContext.request.contextPath}/tuiXach/edit?id=${tuiXach.id_TuiXach}">Edit</a>
+						<a href="${pageContext.request.contextPath}/tuiXach/delete?id=${tuiXach.id_TuiXach}">Delete</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+
+${message}
+</body>
+</html>

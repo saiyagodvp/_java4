@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header> Đăng Ký </header>
+	<form action="/bai2" method="post">
+		<div>
+			<label for="username">Ten dang nhap: </label> <input id="username"
+				type="text" name="username" />
+		</div>
+		<div>
+			<label for="password">Mat khau: </label> <input id="password"
+				type="text" name="password" />
+		</div>
+		<div>
+			<label for="male">Gioi tinh: </label> 
+			<div>
+				<input type="radio" id="male" id="male"  name="gioiTinh" value="Nam"/>
+				<label for="male"></label>
+			</div>
+			<div>
+				<input type="radio" id="female" id="female" name="gioiTinh" value="Nu"/>
+				<label for="female"></label>
+			</div>
+		</div>
+		<div>
+			<label for="married">Tinh trang: </label> 
+			<div>
+				<input type="checkbox" id="male"  name="gioiTinh" value="Nam"/>
+				<label for="male"></label>
+			</div>
+			<div>
+				<input type="radio" id="female"  name="gioiTinh" value="Nu"/>
+				<label for="female"></label>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

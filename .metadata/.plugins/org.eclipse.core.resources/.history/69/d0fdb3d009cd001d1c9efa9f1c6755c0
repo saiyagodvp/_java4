@@ -1,0 +1,121 @@
+package dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import org.hibernate.Transaction;
+
+import entity.Product;
+import utility.JPAUtils;
+
+public class ProductDAO {
+
+	public Product create(Product product) {
+		// 2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+
+		// logic
+		entityManager.persist(product);
+
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return product;
+	}
+
+	public List<Product> readAll() {
+
+		// 2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+
+		// 3 EntityManager -> Query => List
+		Query q = entityManager.createQuery("SELECT p FROM Product p");
+		List<Product> result = q.getResultList();
+
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return result;
+	}
+	
+	 
+
+	public void update(Product p) {
+	System.out.println("chuẩn bị update "+p.toString());
+		// 2. 1-> EntityManager
+//		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+//		entityManager.getTransaction().begin();
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("JAVA04_ASS");
+	EntityManager em = emf.createEntityManager();
+	try {
+		em.getTransaction().begin();
+		
+		em.merge(p);
+		
+		em.getTransaction().commit();
+		
+		System.out.println("true than hcong");
+	} catch (Exception e) {
+		// TODO: handle exception
+		em.getTransaction().rollback();
+		System.out.println("thất bại");
+	}
+
+		// LOGIC
+//		entityManager.merge(product);
+//		System.out.println("đã update");
+//
+//		entityManager.getTransaction().commit();
+//		entityManager.close();
+//		return product;
+	}
+	
+	public Product getProductById(String id1) {
+		
+		int id=Integer.parseInt(id1);
+		
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		Product p = entityManager.find(Product.class, id);
+				
+		entityManager.getTransaction().commit();
+		entityManager.close();	
+		return p;
+	}
+	
+	public Boolean delete(Product product) {
+		//2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		entityManager.remove(product);
+				
+		entityManager.getTransaction().commit();
+		entityManager.close();	
+		return true;
+	}
+	
+	public Boolean delete(Integer id) {
+		//2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		Product p = entityManager.find(Product.class, id);
+		entityManager.remove(p);
+				
+		entityManager.getTransaction().commit();
+		entityManager.close();	
+		return true;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new ProductDAO().getProductById("1"));
+	}
+	
+
+}

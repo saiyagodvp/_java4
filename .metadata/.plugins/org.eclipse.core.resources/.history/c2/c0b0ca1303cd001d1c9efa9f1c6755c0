@@ -1,0 +1,11 @@
+package dao;
+
+import java.util.List;
+
+import model.tuiXach;
+
+public interface tuiXachDAO {
+	tuiXach them(tuiXach tuiXach);
+	
+	List<tuiXach> readAll();
+}

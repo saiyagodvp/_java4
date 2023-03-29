@@ -1,0 +1,8 @@
+package dao;
+
+import dao.productDAO;
+
+
+public class productDAOimpl implements productDAO{
+
+}

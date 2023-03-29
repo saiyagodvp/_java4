@@ -1,0 +1,40 @@
+package controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.tuiXachDAO;
+import dao.tuiXachDAOimpl;
+import model.tuiXach;
+
+@WebServlet({"/tuiXach/update", "capNhat"})
+public class updateTuiXach extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private tuiXachDAO tuiXachDAO = new tuiXachDAOimpl();
+
+	public updateTuiXach() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		tuiXach t = tuiXachDAO.readById(id);
+		request.setAttribute("tenTX", t.getTenTuiXach());
+		request.setAttribute("mauTX", t.getMauSac());
+		request.setAttribute("giaTX", t.getGiaTien());
+		request.setAttribute("ghiChuTX", t.getGhiChu());
+		request.getRequestDispatcher("/tuiXach/updateTuiXach.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+	}
+
+}

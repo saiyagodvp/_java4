@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<divclass"container">
+	<form action="/asmJava4Pnam" align="center" method="post">
+		<div>
+			<label for="tenTuiXach">Tên: </label> <input id="tenTuiXach"
+				type="text" name="tenTuiXach" value="${tenTX }" />
+		</div>
+		<div>
+			<label for="mauSac">Màu: </label> <input id="mauSac" type="text"
+				name="mauSac" value="${mauTX }" />
+		</div>
+		<div>
+			<label for="giaTien">Giá: </label> <input id="giaTien" type="text"
+				name="giaTien" value="${giaTX }" />
+		</div>
+		<div>
+			<label for="ghiChu">Ghi Chú: </label> <input id="ghiChu" type="text"
+				name="ghiChu" value="${ghiChuTX }" />
+		</div>
+		<button formaction="/asmJava4Pnam/sua">Sửa</button> 
+		<a href="/asmJava4Pnam/tuiXach">Về trang chủ</a>
+	</form>
+	</div>
+</body>
+</html>

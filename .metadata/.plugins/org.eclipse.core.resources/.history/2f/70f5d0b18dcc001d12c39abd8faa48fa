@@ -1,0 +1,10 @@
+package dao;
+
+import java.util.List;
+
+import model.productModel;
+
+public interface productDAO {
+	productModel create(productModel p);
+	List<productModel> readAll();
+}

@@ -1,0 +1,56 @@
+package dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import model.productModel;
+
+public class productDAOimpl implements productDAO {
+
+	public static void main(String[] args) {
+		productDAO productDAO = new productDAOimpl();
+
+		List<productModel> listProducts = productDAO.readAll();
+		for (productModel p : listProducts) {
+			System.out.println(p.getName());
+		}
+	}
+
+	@Override
+	public productModel create(productModel p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<productModel> readAll() {
+		EntityManager entityManager = new 
+		return null;
+	}
+
+	@Override
+	public productModel readById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public productModel update(productModel product) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean delete(productModel product) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean delete(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
