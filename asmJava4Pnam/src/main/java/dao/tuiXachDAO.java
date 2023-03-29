@@ -11,6 +11,8 @@ public interface tuiXachDAO {
 
 	List<tuiXach> getAll();
 
+	List<tuiXach> searchByName(String name);
+	
 	Boolean delete(Integer id);
 
 	tuiXach readById(Integer id);

@@ -15,7 +15,7 @@ import dao.tuiXachDAO;
 import dao.tuiXachDAOimpl;
 import model.tuiXach;
 
-@WebServlet({ "/tuiXach", "/them" })
+@WebServlet({ "/tuiXach", "/them", "/search" })
 public class tuiXachServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private tuiXachDAO tuiXachDAO = new tuiXachDAOimpl();
@@ -50,9 +50,13 @@ public class tuiXachServlet extends HttpServlet {
 					"ID: " + t.getId_TuiXach() + "<br>Ten: " + t.getTenTuiXach() + "<br>Màu Sắc:" + t.getMauSac()
 							+ "<br>Giá Tiền: " + t.getGiaTien() + "<br>Ghi Chú: " + t.getGhiChu());
 			txDao.them(t);
+			request.setAttribute("listTuiXach", tuiXachDAO.getAll());
+		} else if (uri.contains("search")) {
+			String timKiem = request.getParameter("timKiem");
+			String finalSearch = "'%" + timKiem + "%'";
+			tuiXachDAO txDao = new tuiXachDAOimpl();
+			request.setAttribute("listTuiXach", txDao.searchByName(finalSearch));
 		}
-
-		request.setAttribute("listTuiXach", tuiXachDAO.getAll());
 
 		request.getRequestDispatcher("/tuiXach/listTuiXach.jsp").forward(request, response);
 

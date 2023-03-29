@@ -48,6 +48,18 @@
 			<div class="row">
 				<div class="col  input-group input-group-sm mb-3 ">
 					<span class="input-group-text btn btn-primary"
+						id="inputGroup-sizing-sm">Tìm Kiếm: </span> <input id="timKiem"
+						type="text" name="timKiem" value="${timKiem }"
+						class="form-control border border-primary text-black"
+						aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-sm">
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col  input-group input-group-sm mb-3 ">
+					<span class="input-group-text btn btn-primary"
 						id="inputGroup-sizing-sm">Tên: </span> <input id="tenTuiXach"
 						type="text" name="tenTuiXach" value="${tenTX }"
 						class="form-control border border-primary text-black"
@@ -92,6 +104,7 @@
 
 
 			<button class="btn btn-info" formaction="/asmJava4Pnam/them">Thêm</button>
+			<button class="btn btn-info" formaction="/asmJava4Pnam/search">Search</button>
 		</form>
 
 		<table class="table table-hover  table-striped " align="center">

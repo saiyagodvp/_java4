@@ -38,7 +38,7 @@ public class tuiXachDAOimpl implements tuiXachDAO {
 		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
 		entityManager.getTransaction().begin();
 
-		Query q = entityManager.createQuery("SELECT t FROM tuiXach t");
+		Query q = entityManager.createQuery("SELECT t FROM tuiXach t ");
 		List<tuiXach> result = q.getResultList();
 		entityManager.getTransaction().commit();
 		entityManager.close();
@@ -84,6 +84,18 @@ public class tuiXachDAOimpl implements tuiXachDAO {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		return tuiXach;
+	}
+
+	@Override
+	public List<tuiXach> searchByName(String name) {
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+
+		Query q = entityManager.createQuery("select t from tuiXach t where tenTuiXach like " + name);
+		List<tuiXach> result = q.getResultList();
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return result;
 	}
 
 }

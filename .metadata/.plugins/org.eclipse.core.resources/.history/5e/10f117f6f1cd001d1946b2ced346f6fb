@@ -1,0 +1,95 @@
+package dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import model.tuiXach;
+import utils.JPAUtils;
+
+public class tuiXachDAOimpl implements tuiXachDAO {
+
+	public static void main(String[] args) {
+		tuiXachDAO tuiXachDAO = new tuiXachDAOimpl();
+
+		List<tuiXach> listTuiXach = tuiXachDAO.getAll();
+		for (tuiXach t : listTuiXach) {
+			System.out.println(t.getTenTuiXach());
+		}
+	}
+
+	@Override
+	public tuiXach them(tuiXach tuiXach) {
+		// 2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+
+		// logic
+		entityManager.persist(tuiXach);
+
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return tuiXach;
+	}
+
+	@Override
+	public List<tuiXach> getAll() {
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+
+		Query q = entityManager.createQuery("SELECT t FROM tuiXach t ");
+		List<tuiXach> result = q.getResultList();
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return result;
+	}
+
+	@Override
+	public Boolean delete(Integer id) {
+		// 2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+
+		tuiXach t = entityManager.find(tuiXach.class, id);
+		entityManager.remove(t);
+
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return true;
+	}
+
+	@Override
+	public tuiXach readById(Integer id) {
+		// 2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+
+		tuiXach t = entityManager.find(tuiXach.class, id);
+
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return t;
+	}
+
+	@Override
+	public tuiXach sua(tuiXach tuiXach) {
+		// 2. 1-> EntityManager
+		EntityManager entityManager = JPAUtils.getFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+
+		// LOGIC
+		entityManager.merge(tuiXach);
+
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return tuiXach;
+	}
+
+	@Override
+	public List<tuiXach> searchByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
